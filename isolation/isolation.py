@@ -281,7 +281,7 @@ class Board(object):
         out = ''
 
         for i in range(self.height):
-            out += ' | '
+            out += str(i)+' | '
 
             for j in range(self.width):
 
@@ -292,11 +292,11 @@ class Board(object):
                 elif p2_loc and i == p2_loc[0] and j == p2_loc[1]:
                     out += '2'
                 else:
-                    out += '-'
+                    out += 'x'
 
                 out += ' | '
             out += '\n\r'
-
+        out += '    0   1   2   3   4   5   6\n\r'
         return out
 
     def play(self, time_limit=TIME_LIMIT_MILLIS):
@@ -342,8 +342,8 @@ class Board(object):
             else:
                 move_history[-1].append(curr_move)
 
-#            if move_end < 0:
-#                return self.__inactive_player__, move_history, "timeout"
+            if move_end < 0:
+                return self.__inactive_player__, move_history, "timeout"
             self.to_string()
             if curr_move not in legal_player_moves:
                 return self.__inactive_player__, move_history, "illegal move"
